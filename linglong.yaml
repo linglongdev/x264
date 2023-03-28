@@ -1,0 +1,29 @@
+package:
+  id: x264
+  name: x264
+  version: 0.155.2917
+  kind: lib
+  description: |
+    x264.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/x264.git
+  version: master
+  commit: 6df223a309ff73c750ef9ebe065e1f3c4ed01114
+  patch:
+  - link_gpac_dynamically.patch
+  - properly_detect_x32.patch
+  - 0001-mp4-Update-GPAC-support-to-v0.8.0-or-later.patch
+  - 0001-LoongArch-Migrate-patches-from-0.155.2917_git0a84d98.patch
+variables:
+  extra_args: |
+    --enable-shared \
+    --systemd-libx264
+    #--enable-static --disable-cli
+build:
+  kind: autotools
